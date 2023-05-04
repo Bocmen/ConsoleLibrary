@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:popuppages="clr-namespace:ConsoleLibrary.PopupPages"
+                 x:DataType="popuppages:PickColorPopup"
+                 x:Class="ConsoleLibrary.PopupPages.PickColorPopup">
+    <StackLayout HorizontalOptions="Center"
+                 VerticalOptions="Center"
+                 Style="{Binding StyleRootStackLayout}">
+        <Frame x:Name="ViewColor"
+               HorizontalOptions="FillAndExpand"
+               Style="{Binding StyleFrameColorView}"/>
+        <Frame Style="{Binding StyleFrameContent}">
+            <StackLayout>
+                <Label x:Name="RLabel"
+                       Style="{Binding StyleLabel}"/>
+                <Slider x:Name="RSlider"
+                        Maximum="255"
+                        Minimum="0"
+                        Style="{Binding StyleSlider}"/>
+                <Label x:Name="GLabel"
+                       Style="{Binding StyleLabel}"/>
+                <Slider x:Name="GSlider"
+                        Maximum="255"
+                        Minimum="0"
+                        Style="{Binding StyleSlider}"/>
+                <Label x:Name="BLabel"
+                       Style="{Binding StyleLabel}"/>
+                <Slider x:Name="BSlider"
+                        Maximum="255"
+                        Minimum="0"
+                        Style="{Binding StyleSlider}"/>
+                <Label x:Name="ALabel"
+                       Style="{Binding StyleLabel}"/>
+                <Slider x:Name="ASlider"
+                        Maximum="255"
+                        Minimum="0"
+                        Style="{Binding StyleSlider}"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

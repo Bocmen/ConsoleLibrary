@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ConsoleLibrary.Views;assembly=ConsoleLibrary"
+             xmlns:nameBases="clr-namespace:WorkInvoker.Pages"
+             xmlns:console="clr-namespace:ConsoleLibrary.Views;assembly=ConsoleLibrary"
+             Style="{DynamicResource Key={Static nameBases:SettingPage.PageStyle}}"
+             x:Class="WorkInvoker.Pages.SettingPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Slider">
+                <Setter Property="Maximum" Value="50"/>
+                <Setter Property="Minimum" Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame Style="{DynamicResource Key={Static nameBases:SettingPage.FrameDecorationStyle}}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label x:Name="TitleThemeCurrent"
+                               Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"/>
+                        <Button x:Name="ChangeTheme"
+                            Grid.Column="1"
+                            Text="Сменить"
+                            Style="{DynamicResource Key={Static nameBases:SettingPage.ButtonStyle}}"
+                            Clicked="ChangeTheme_Clicked"/>
+                    </Grid>
+                </Frame>
+                <Frame Style="{DynamicResource Key={Static nameBases:SettingPage.FrameDecorationStyle}}">
+                    <StackLayout>
+                        <Label Text="Редактирование размерных параметров среди всех тем"
+                           Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                           HorizontalTextAlignment="Center"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Закругление"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="0"/>
+                            <Slider x:Name="CornerRadius"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.SliderStyle}}"
+                                    Grid.Row="0"
+                                    Grid.Column="1"/>
+                            <Label Text="{Binding Path=Value, Source={x:Reference CornerRadius}}"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Column="2"
+                                   Grid.Row="0"/>
+
+                            <Label Text="Текст обычный"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="1"/>
+                            <Slider x:Name="TextSize_Text"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.SliderStyle}}"
+                                    Grid.Row="1"
+                                    Grid.Column="1"/>
+                            <Label Text="{Binding Path=Value, Source={x:Reference TextSize_Text}}"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Column="2"
+                                   Grid.Row="1"/>
+                            <Label Text="Текст заголовок"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="2"/>
+                            <Slider x:Name="TextSize_Title"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.SliderStyle}}"
+                                    Grid.Row="2"
+                                    Grid.Column="1"/>
+                            <Label Text="{Binding Path=Value, Source={x:Reference TextSize_Title}}"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Column="2"
+                                   Grid.Row="2"/>
+
+
+                            <Label Text="LaTeX обычный"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="3"/>
+                            <Slider x:Name="LaTeXSize_Text"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.SliderStyle}}"
+                                    Grid.Row="3"
+                                    Grid.Column="1"/>
+                            <Label Text="{Binding Path=Value, Source={x:Reference LaTeXSize_Text}}"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Column="2"
+                                   Grid.Row="3"/>
+                            <Label Text="LaTeX заголовок"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="4"/>
+                            <Slider x:Name="LaTeXSize_Title"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.SliderStyle}}"
+                                    Grid.Row="4"
+                                    Grid.Column="1"/>
+                            <Label Text="{Binding Path=Value, Source={x:Reference LaTeXSize_Title}}"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Column="2"
+                                   Grid.Row="4"/>
+
+
+                            <Label Text="Chart scale"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="5"/>
+                            <Slider x:Name="OxyPlotChart_HeightScale"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.SliderStyle}}"
+                                    Maximum="1"
+                                    Minimum="0"
+                                    Grid.Row="5"
+                                    Grid.Column="1"/>
+                            <Label Text="{Binding Path=Value, Source={x:Reference OxyPlotChart_HeightScale}}"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Column="2"
+                                   Grid.Row="5"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button Text="Сбросить"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.ButtonStyle}}"
+                                    Grid.Column="0"/>
+                            <Button Text="Попробовать"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.ButtonStyle}}"
+                                    Grid.Column="1"/>
+                            <Button Text="Применить"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.ButtonStyle}}"
+                                    Grid.Column="2"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{DynamicResource Key={Static nameBases:SettingPage.FrameDecorationStyle}}">
+                    <StackLayout>
+                        <Label Text="Редактирование цветовой палитры текущей темы"
+                           Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                           HorizontalTextAlignment="Center"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Текст"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="0"/>
+                            <views:PickColor x:Name="TextColor"
+                                   Grid.Row="0"
+                                   Grid.Column="1"/>
+
+                            <Label Text="Фон"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="1"/>
+                            <views:PickColor x:Name="BackgroundColor"
+                                   Grid.Row="1"
+                                   Grid.Column="1"/>
+
+                            <Label Text="Внешний цвет"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="2"/>
+                            <views:PickColor x:Name="ForegroundColor"
+                                   Grid.Row="2"
+                                   Grid.Column="1"/>
+
+                            <Label Text="Цвет UI элементов"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="3"/>
+                            <views:PickColor x:Name="UIElemColor"
+                                   Grid.Row="3"
+                                   Grid.Column="1"/>
+
+                            <Label Text="PositiveColor"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="4"/>
+                            <views:PickColor x:Name="PositiveColor"
+                                   Grid.Row="4"
+                                   Grid.Column="1"/>
+
+                            <Label Text="NegativeColor"
+                                   Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"
+                                   Grid.Row="5"/>
+                            <views:PickColor x:Name="NegativeColor"
+                                   Grid.Row="5"
+                                   Grid.Column="1"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button Text="Сбросить"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.ButtonStyle}}"
+                                    Grid.Column="0"/>
+                            <Button Text="Попробовать"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.ButtonStyle}}"
+                                    Grid.Column="1"/>
+                            <Button Text="Применить"
+                                    Style="{DynamicResource Key={Static nameBases:SettingPage.ButtonStyle}}"
+                                    Grid.Column="2"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Пример отображения консольных элементов"
+                       HorizontalOptions="Center"
+                       Style="{DynamicResource Key={Static nameBases:SettingPage.LabelStyle}}"/>
+                <console:Console x:Name="Console"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

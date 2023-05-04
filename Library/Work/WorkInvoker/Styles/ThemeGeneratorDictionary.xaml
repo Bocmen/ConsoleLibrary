@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             xmlns:csharpMath="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms"
+             xmlns:tools="clr-namespace:WorkInvoker.Styles.Tools;assembly=WorkInvoker"
+             xmlns:views="clr-namespace:ConsoleLibrary.Views;assembly=ConsoleLibrary"
+             xmlns:namesBase="clr-namespace:WorkInvoker.Styles"
+             xmlns:consoleNameBases="clr-namespace:ConsoleLibrary.ConsoleExtensions;assembly=ConsoleLibrary"
+             xmlns:pages="clr-namespace:WorkInvoker.Pages"
+             xmlns:popupPages="clr-namespace:ConsoleLibrary.PopupPages;assembly=ConsoleLibrary"     
+             x:Class="WorkInvoker.Styles.ThemeGeneratorDictionary">
+    <!--#region Converters-->
+    <tools:MultiplierValueConverter x:Key="multiplierValueConverter" />
+    <!--#endregion-->
+    <!--#region SharedElemStyle-->
+    <Style TargetType="Button" x:Key="WorkInvoker_ButtonStyle">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.BackgroundColor}}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.CornerRadius}}"/>
+        <Setter Property="FontSize" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.TextSize_Text}}"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+
+        <Setter Property="HeightRequest">
+            <OnPlatform x:TypeArguments="x:Double">
+                <On Platform="Android" Value="30"/>
+                <On Platform="UWP" Value="35"/>
+            </OnPlatform>
+        </Setter>
+        <Setter Property="WidthRequest">
+            <OnPlatform x:TypeArguments="x:Double">
+                <On Platform="Android" Value="50"/>
+                <On Platform="UWP" Value="100"/>
+            </OnPlatform>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="WorkInvoker_ButtonPositiveStyle" BasedOn="{StaticResource WorkInvoker_ButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.PositiveColor}}"/>
+    </Style>
+    <Style TargetType="Button" x:Key="WorkInvoker_ButtonNegativeStyle" BasedOn="{StaticResource WorkInvoker_ButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.NegativeColor}}"/>
+    </Style>
+
+    <Style TargetType="Editor" x:Key="WorkInvoker_EditorStyle">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.ForegroundColor}}"/>
+        <Setter Property="TextColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.TextColor}}"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.UIElemColor}}"/>
+        <Setter Property="Placeholder" Value="Введите запрашиваемое выражение"/>
+        <Setter Property="FontSize" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.TextSize_Text}}"/>
+    </Style>
+    <Style TargetType="csharpMath:TextView" x:Key="WorkInvoker_TextViewLaTeXStyle">
+        <Setter Property="TextColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.TextColor}}"/>
+        <Setter Property="BackgroundColor" Value="#0000"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontSize" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.LaTeXSize_Text}}"/>
+    </Style>
+    <Style TargetType="Label" x:Key="WorkInvoker_LabelStyle">
+        <Setter Property="TextColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.TextColor}}"/>
+        <Setter Property="BackgroundColor" Value="#0000"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontSize" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.TextSize_Text}}"/>
+    </Style>
+
+    <Style TargetType="oxy:PlotView">
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="BackgroundColor" Value="White"/>
+    </Style>
+    <Style TargetType="views:HyperlinkSpan">
+        <Setter Property="TextColor" Value="#00a5c7"/>
+        <Setter Property="TextDecorations" Value="Underline"/>
+    </Style>
+
+    <Style TargetType="Slider" x:Key="WorkInvoker_Slider">
+        <Setter Property="MinimumTrackColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.UIElemColor}}"/>
+        <Setter Property="MaximumTrackColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.BackgroundColor}}"/>
+        <Setter Property="ThumbColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.PositiveColor}}"/>
+    </Style>
+    <Style TargetType="views:PickColor">
+        <Setter Property="CornerRadius" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.CornerRadius}}"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region ConsoleStyle-->
+    <Style TargetType="views:Console" >
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.BackgroundColor}}"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region ConsoleDecorationExtension-->
+    <Style TargetType="Frame" x:Key="ConsoleLibrary_ConsoleDecorationExtension_BlockStyle">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.ForegroundColor}}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.CornerRadius}}"/>
+        <Setter Property="Padding" Value="10"/>
+    </Style>
+    <Style TargetType="Frame" x:Key="ConsoleLibrary_ConsoleDecorationExtension_SeparatorLine">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.UIElemColor}}"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="CornerRadius" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.CornerRadius}}"/>
+        <Setter Property="HasShadow" Value="False"/>
+    </Style>
+    <Style TargetType="Button"
+               x:Key="ConsoleLibrary_ConsoleDecorationExtension_ButtonFullViewStyle"
+               BasedOn="{StaticResource WorkInvoker_ButtonPositiveStyle}">
+        <Setter Property="Text" Value="Отобразить в полный экран"/>
+    </Style>
+
+    <Style TargetType="View"
+           x:Key="ConsoleLibrary_ConsoleDecorationExtension_DefaultViewStyle">
+        <Setter Property="HeightRequest" Value="{Binding MainPage.Height,
+                                                    Source={x:Static Application.Current},
+                                                    Converter={StaticResource multiplierValueConverter},
+                                                    ConverterParameter={StaticResource Key={Static namesBase:ThemeGeneratorDictionary.OxyPlotChart_HeightScale}}}"/>
+    </Style>
+    <Style TargetType="View"
+               x:Key="ConsoleLibrary_ConsoleDecorationExtension_FullViewPageStyle"/>
+    <!--#endregion-->
+    <!--#region ConsoleIOExtension-->
+    <Style TargetType="Label" x:Key="ConsoleLibrary_ConsoleIOExtension_LabelStyle" BasedOn="{StaticResource WorkInvoker_LabelStyle}"/>
+    <Style TargetType="csharpMath:TextView" x:Key="ConsoleLibrary_ConsoleIOExtension_LaTeXStyle" BasedOn="{StaticResource WorkInvoker_TextViewLaTeXStyle}"/>
+    <tools:ValueReference x:TypeArguments="Color" x:Key="ConsoleLibrary_ConsoleIOExtension_ColorError" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.NegativeColor}}"/>
+    <tools:ValueReference x:TypeArguments="x:Double" x:Key="ConsoleLibrary_ConsoleIOExtension_TitleFontSize" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.TextSize_Title}}"/>
+    <tools:ValueReference x:TypeArguments="x:Single" x:Key="ConsoleLibrary_ConsoleIOExtension_TitleLaTeXFontSize" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.LaTeXSize_Title}}"/>
+
+    <Style TargetType="Button" x:Key="ConsoleLibrary_ConsoleIOExtension_ButtonWriteLineStyle" BasedOn="{StaticResource WorkInvoker_ButtonPositiveStyle}">
+        <Setter Property="Text" Value="Ввести"/>
+    </Style>
+    <Style TargetType="Editor" x:Key="ConsoleLibrary_ConsoleIOExtension_EditorStyle" BasedOn="{StaticResource WorkInvoker_EditorStyle}"/>
+    <Style TargetType="Frame" x:Key="ConsoleLibrary_ConsoleIOExtension_InputDecorationStyle" BasedOn="{StaticResource Key={Static consoleNameBases:ConsoleDecorationExtension.BlockStyle}}">
+        <Setter Property="HasShadow" Value="False"/>
+    </Style>
+    <Style TargetType="Grid" x:Key="ConsoleLibrary_ConsoleIOExtension_InputGridStyle">
+        <Setter Property="RowSpacing" Value="0"/>
+        <Setter Property="ColumnSpacing" Value="10"/>
+    </Style>
+    <Style TargetType="Button"
+               x:Key="ConsoleLibrary_ConsoleIOExtension_ButtonAnswerOkStyle"
+               BasedOn="{StaticResource WorkInvoker_ButtonPositiveStyle}">
+        <Setter Property="Text" Value="Да"/>
+    </Style>
+    <Style TargetType="Button"
+               x:Key="ConsoleLibrary_ConsoleIOExtension_ButtonAnswerNoStyle"
+               BasedOn="{StaticResource WorkInvoker_ButtonNegativeStyle}">
+        <Setter Property="Text" Value="Нет"/>
+    </Style>
+    <Style TargetType="Button"
+               x:Key="ConsoleLibrary_ConsoleFilePickerExtension_FilePickButtonStyle"
+               BasedOn="{StaticResource WorkInvoker_ButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.UIElemColor}}"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region ConsoleTableExtension-->
+    <x:Double x:Key="ConsoleLibrary_ConsoleTableExtension_SizeBorderTableGrid">1.5</x:Double>
+    <tools:ValueReference x:TypeArguments="Color" x:Key="ConsoleLibrary_ConsoleTableExtension_ColorBorderTableGrid" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.UIElemColor}}"/>
+    <!--#endregion-->
+    <!--#region ConsoleLibrary Popup-->
+    <Style TargetType="popupPages:PickColorPopup">
+        <Setter Property="StyleLabel" Value="{StaticResource WorkInvoker_LabelStyle}"/>
+        <Setter Property="StyleFrameContent" Value="{StaticResource Key={Static consoleNameBases:ConsoleDecorationExtension.BlockStyle}}"/>
+        <Setter Property="StyleFrameColorView">
+            <Style TargetType="Frame">
+                <Setter Property="CornerRadius" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.CornerRadius}}"/>
+                <Setter Property="HeightRequest" Value="150"/>
+            </Style>
+        </Setter>
+        <Setter Property="StyleRootStackLayout">
+            <Style TargetType="StackLayout">
+                <Setter Property="WidthRequest" Value="350"/>
+            </Style>
+        </Setter>
+        <Setter Property="StyleSlider" Value="{StaticResource WorkInvoker_Slider}"/>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region WorkInvoker ViewGroupWorks-->
+    <Style TargetType="Frame" x:Key="WorkInvoker_ViewGroupWorks_FrameExpanderStyle" BasedOn="{StaticResource ConsoleLibrary_ConsoleDecorationExtension_BlockStyle}"/>
+    <Style TargetType="Label" x:Key="WorkInvoker_ViewGroupWorks_NameGroupExpanderStyle" BasedOn="{StaticResource WorkInvoker_LabelStyle}">
+        <Setter Property="FontSize" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.TextSize_Title}}"/>
+    </Style>
+    <Style TargetType="Frame" x:Key="WorkInvoker_ViewGroupWorks_FrameNodeContentExpanderStyle" BasedOn="{StaticResource ConsoleLibrary_ConsoleDecorationExtension_BlockStyle}">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.UIElemColor}}"/>
+    </Style>
+    <Style TargetType="Label" x:Key="WorkInvoker_ViewGroupWorks_TitleContentExpanderStyle" BasedOn="{StaticResource WorkInvoker_LabelStyle}"/>
+    <Style TargetType="Label" x:Key="WorkInvoker_ViewGroupWorks_DescriptionContentExpanderStyle" BasedOn="{StaticResource WorkInvoker_LabelStyle}"/>
+    <Style TargetType="Button" x:Key="WorkInvoker_ViewGroupWorks_ButtonContentExpanderStyle" BasedOn="{StaticResource WorkInvoker_ButtonPositiveStyle}">
+        <Setter Property="Text" Value="Открыть"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region WorkInvoker MainPage-->
+    <Style TargetType="TabbedPage" x:Key="WorkInvoker_MainPage_PageStyle">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.BackgroundColor}}"/>
+        <Setter Property="BarTextColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.TextColor}}"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region WorkInvoker ViewGroupWorksPage-->
+    <Style TargetType="pages:ViewGroupWorksPage" x:Key="WorkInvoker_ViewGroupWorksPage_PageStyle">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key={Static namesBase:ThemeGeneratorDictionary.BackgroundColor}}"/>
+        <Setter Property="Padding" Value="10"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region WorkInvoker SettingPage-->
+    <Style TargetType="Frame" x:Key="WorkInvoker_SettingPage_FrameDecorationStyle" BasedOn="{StaticResource Key={Static consoleNameBases:ConsoleDecorationExtension.BlockStyle}}"/>
+    <Style TargetType="Label" x:Key="WorkInvoker_SettingPage_LabelStyle" BasedOn="{StaticResource WorkInvoker_LabelStyle}"/>
+    <Style TargetType="Button" x:Key="WorkInvoker_SettingPage_ButtonStyle" BasedOn="{StaticResource WorkInvoker_ButtonPositiveStyle}"/>
+    <Style TargetType="Slider" x:Key="WorkInvoker_SettingPage_SliderStyle" BasedOn="{StaticResource WorkInvoker_Slider}">
+        <Setter Property="Maximum" Value="30"/>
+        <Setter Property="Minimum" Value="0"/>
+    </Style>
+    <Style TargetType="Page" x:Key="WorkInvoker_SettingPage_PageStyle">
+        <Setter Property="Padding" Value="10"/>
+    </Style>
+    <!--#endregion-->
+</ResourceDictionary>

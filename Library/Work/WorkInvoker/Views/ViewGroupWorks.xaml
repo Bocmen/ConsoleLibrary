@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:baseNames="clr-namespace:WorkInvoker.Views"
+             x:Class="WorkInvoker.Views.ViewGroupWorks">
+    <ScrollView>
+        <StackLayout x:Name="GroupsView"
+                 HorizontalOptions="Start"
+                 VerticalOptions="Start"
+                 BindableLayout.ItemsSource="{Binding Path=.}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Frame Style="{DynamicResource Key={Static baseNames:ViewGroupWorks.FrameExpanderStyle}}"
+                       Padding="0">
+                        <xct:Expander HorizontalOptions="Start"
+                                      VerticalOptions="Start"
+                                      IsExpanded="{Binding IsExpanded}"
+                                      PropertyChanged="Expander_PropertyChanged">
+                            <xct:Expander.Header>
+                                <Grid Padding="10">
+                                    <Label Text="{Binding GroupName}"
+                                           Style="{DynamicResource Key={Static baseNames:ViewGroupWorks.NameGroupExpanderStyle}}"/>
+                                    <Label Text="+"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Start"
+                                       Style="{DynamicResource Key={Static baseNames:ViewGroupWorks.NameGroupExpanderStyle}}"
+                                       FontAttributes="Bold">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                 Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}"
+                                                 Value="True">
+                                                <Setter Property="Text" Value="-"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Grid>
+                            </xct:Expander.Header>
+
+                            <xct:Expander.ContentTemplate>
+                                <DataTemplate>
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Items}"
+                                             Padding="10">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame Style="{DynamicResource Key={Static baseNames:ViewGroupWorks.FrameNodeContentExpanderStyle}}">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+
+                                                        <Label Text="{Binding Title}"
+                                                               Style="{DynamicResource Key={Static baseNames:ViewGroupWorks.TitleContentExpanderStyle}}"/>
+                                                        <Label Grid.Row="1"
+                                                           Text="{Binding Description}"
+                                                           Style="{DynamicResource Key={Static baseNames:ViewGroupWorks.DescriptionContentExpanderStyle}}"/>
+                                                        <Button Grid.Column="1"
+                                                            Grid.RowSpan="2"
+                                                            Text="Открыть"
+                                                            Style="{DynamicResource Key={Static baseNames:ViewGroupWorks.ButtonContentExpanderStyle}}"
+                                                            Clicked="Button_Clicked"/>
+                                                    </Grid>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </xct:Expander.ContentTemplate>
+                        </xct:Expander>
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </ScrollView>
+</ContentView>
