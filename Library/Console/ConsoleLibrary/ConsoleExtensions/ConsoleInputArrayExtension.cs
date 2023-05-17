@@ -89,7 +89,7 @@ namespace ConsoleLibrary.ConsoleExtensions
         {
             return ReadArrayNumeric(console, title, float.TryParse, count, startRange, endRange, float.MinValue, float.MaxValue, getResultMassage, options, separator, defaultsValue, token);
         }
-        public static Task<BigInteger[]> ReadArrayFloat(this IConsole console, string title, BigInteger? startRange = null, BigInteger? endRange = null, int? count = null, GenerateMessagesResultUseTitle<BigInteger[]> getResultMassage = null, OptionReadValue options = OptionReadValue.None, char separator = ' ', IEnumerable<BigInteger> defaultsValue = null, CancellationToken? token = null)
+        public static Task<BigInteger[]> ReadArrayBigInteger(this IConsole console, string title, BigInteger? startRange = null, BigInteger? endRange = null, int? count = null, GenerateMessagesResultUseTitle<BigInteger[]> getResultMassage = null, OptionReadValue options = OptionReadValue.None, char separator = ' ', IEnumerable<BigInteger> defaultsValue = null, CancellationToken? token = null)
         {
             return ReadArrayNumeric(console, title, BigInteger.TryParse, count, startRange, endRange, null, null, getResultMassage, options, separator, defaultsValue, token);
         }
