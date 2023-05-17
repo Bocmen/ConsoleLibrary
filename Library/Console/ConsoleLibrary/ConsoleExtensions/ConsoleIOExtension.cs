@@ -10,6 +10,7 @@ using System.Threading;
 using ConsoleLibrary.Tools;
 
 using Xamarin.Forms;
+using System.Numerics;
 
 namespace ConsoleLibrary.ConsoleExtensions
 {
@@ -174,12 +175,12 @@ namespace ConsoleLibrary.ConsoleExtensions
         }
         #endregion
         #region Парсеры чисел
-        private static ResultValue<T> ParseNumber<T>(string text, T startRange, T endRange, TryParseNumeric<T> fGet) where T : IComparable
+        private static ResultValue<T> ParseNumber<T>(string text, T? startRange, T? endRange, TryParseNumeric<T> fGet) where T : struct, IComparable
         {
             if (string.IsNullOrWhiteSpace(text)) return ResultValue<T>.CreateError(ErrorMessageStringIsEmpty);
             if (fGet.Invoke(text, out T result))
             {
-                if (startRange.CompareTo(result) <= 0 && endRange.CompareTo(result) >= 0) return ResultValue<T>.CreateResult(result);
+                if ((startRange == null || startRange.Value.CompareTo(result) <= 0) && (startRange == null || endRange.Value.CompareTo(result) >= 0)) return ResultValue<T>.CreateResult(result);
                 else return ResultValue<T>.CreateError(string.Format(PatternErrorMessageIntervalViolation, result, startRange, endRange));
             }
             else
@@ -325,7 +326,7 @@ namespace ConsoleLibrary.ConsoleExtensions
             await console.InvockeUITheardAction(() => entry.Focus());
             return await result;
         }
-        public static Task<T> ReadNumber<T>(this IConsole console, string title, T? startRange, T? endRange, T minValue, T maxValue, TryParseNumeric<T> fParse, GenerateMessagesResultUseTitle<T> getResultTitle, OptionReadValue options, string defaultValue = null, CancellationToken? token = null)
+        public static Task<T> ReadNumber<T>(this IConsole console, string title, T? startRange, T? endRange, T? minValue, T? maxValue, TryParseNumeric<T> fParse, GenerateMessagesResultUseTitle<T> getResultTitle, OptionReadValue options, string defaultValue = null, CancellationToken? token = null)
         where T : struct, IComparable
         {
             return console.ReadValueFromText
@@ -434,6 +435,10 @@ namespace ConsoleLibrary.ConsoleExtensions
         public static Task<float> ReadFloat(this IConsole console, string title, float? startRange = null, float? endRange = null, GenerateMessagesResultUseTitle<float> getResultTitle = null, OptionReadValue options = OptionReadValue.None, float? defaultValue = null, CancellationToken? token = null)
         {
             return console.ReadNumber(title, startRange, endRange, float.MinValue, float.MaxValue, float.TryParse, getResultTitle, options, defaultValue?.ToString(), token);
+        }
+        public static Task<BigInteger> ReadBigInteger(this IConsole console, string title, BigInteger? startRange = null, BigInteger? endRange = null, GenerateMessagesResultUseTitle<BigInteger> getResultTitle = null, OptionReadValue options = OptionReadValue.None, BigInteger? defaultValue = null, CancellationToken? token = null)
+        {
+            return console.ReadNumber(title, startRange, endRange, null, null, BigInteger.TryParse, getResultTitle, options, defaultValue?.ToString(), token);
         }
         #endregion
     }
