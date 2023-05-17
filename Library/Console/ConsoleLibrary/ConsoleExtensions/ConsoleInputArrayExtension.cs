@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 
 using Xamarin.Forms;
+using System.Numerics;
 
 namespace ConsoleLibrary.ConsoleExtensions
 {
@@ -44,7 +45,7 @@ namespace ConsoleLibrary.ConsoleExtensions
                 return getResult.Invoke(t.Split(separator));
             }, getResultMassage, options, keyboard, defaultsValue == null ? string.Empty : string.Join(separator.ToString(), defaultsValue), token);
         }
-        public static Task<T[]> ReadArrayNumeric<T>(IConsole console, string title, TryParseNumeric<T> fParse, int? count, T? startRange, T? endRange, T minValue, T maxValue, GenerateMessagesResultUseTitle<T[]> getResultMassage, OptionReadValue options, char separator, IEnumerable<T> defaultsValue, CancellationToken? token = null)
+        public static Task<T[]> ReadArrayNumeric<T>(IConsole console, string title, TryParseNumeric<T> fParse, int? count, T? startRange, T? endRange, T? minValue, T? maxValue, GenerateMessagesResultUseTitle<T[]> getResultMassage, OptionReadValue options, char separator, IEnumerable<T> defaultsValue, CancellationToken? token = null)
         where T : struct, IComparable
         {
             return console.ReadArrayFromText
@@ -87,6 +88,10 @@ namespace ConsoleLibrary.ConsoleExtensions
         public static Task<float[]> ReadArrayFloat(this IConsole console, string title, float? startRange = null, float? endRange = null, int? count = null, GenerateMessagesResultUseTitle<float[]> getResultMassage = null, OptionReadValue options = OptionReadValue.None, char separator = ' ', IEnumerable<float> defaultsValue = null, CancellationToken? token = null)
         {
             return ReadArrayNumeric(console, title, float.TryParse, count, startRange, endRange, float.MinValue, float.MaxValue, getResultMassage, options, separator, defaultsValue, token);
+        }
+        public static Task<BigInteger[]> ReadArrayFloat(this IConsole console, string title, BigInteger? startRange = null, BigInteger? endRange = null, int? count = null, GenerateMessagesResultUseTitle<BigInteger[]> getResultMassage = null, OptionReadValue options = OptionReadValue.None, char separator = ' ', IEnumerable<BigInteger> defaultsValue = null, CancellationToken? token = null)
+        {
+            return ReadArrayNumeric(console, title, BigInteger.TryParse, count, startRange, endRange, null, null, getResultMassage, options, separator, defaultsValue, token);
         }
         #endregion
     }
